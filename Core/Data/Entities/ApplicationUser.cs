@@ -35,5 +35,20 @@ namespace Diplom.Core.Data.Entities
         /// Gets list of project.
         /// </summary>
         public List<Project> Projects { get; } = new List<Project>();
+
+        /// <summary>
+        /// Checks if user belongs to specified role.
+        /// </summary>
+        /// <param name="roleName">Role name to check.</param>
+        /// <returns>True if user belongs to role.</returns>
+        public bool IsInRole(string roleName)
+        {
+            if (string.IsNullOrWhiteSpace(roleName))
+            {
+                throw new ArgumentException($"'{nameof(roleName)}' cannot be null or whitespace.", nameof(roleName));
+            }
+
+            return this.UserRoles.Any(ur => ur.Role.Name == roleName);
+        }
     }
 }

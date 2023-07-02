@@ -1,0 +1,37 @@
+﻿@page
+@model Diplom.Web.Areas.Admin.Pages.Employees.Add
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Admin page";
+}
+
+<h2>Административная панель - Добавление пользователя</h2>
+<br />
+<a asp-page="Index" class="btn btn-outline-primary btn-sm mb-2">Назад</a>
+<br />
+
+@if (Model.EmployeeCreated)
+{
+    <div class="text-success">
+        Пользователь успешно создан.
+    </div>
+}
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="@Model.Email" class="form-label">Email:</label>
+        <input type="email" class="form-control" asp-for="@Model.Email">
+        <span asp-validation-for="Email"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@Model.Password" class="form-label">Пароль:</label>
+        <input type="text" class="form-control" asp-for="@Model.Password" aria-describedby="pswdHelp">
+        <span asp-validation-for="Password"></span>
+        <small id="pswdHelp" class="form-text text-muted">Пароль должен содержать символы латиницы в нижнем и верхнем регистрах, а также цифры. Пример: abcDEF123</small>
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary mb-3">Добавить</button>
+    </div>
+</form>

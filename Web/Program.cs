@@ -125,6 +125,7 @@ try
     builder.Services.AddHostedService<QueuedTasksBackgroundExecutorHostedService>();
 
     builder.Services.AddScoped<MainController>();
+    builder.Services.AddScoped<EmployeeService>();
 
     // Add task scheduler (quartz).
     builder.Services.AddQuartz(q =>

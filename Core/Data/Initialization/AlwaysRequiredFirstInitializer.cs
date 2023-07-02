@@ -56,6 +56,9 @@ namespace Diplom.Core.Data.Initialization
             identityResult = await roleManager.CreateAsync(new ApplicationRole() { Id = 10, Name = ApplicationRole.SystemAdmin });
             MainController.EnsureIdentityResultIsSucceeded(identityResult);
 
+            identityResult = await roleManager.CreateAsync(new ApplicationRole() { Id = 20, Name = ApplicationRole.EmployeeUser });
+            MainController.EnsureIdentityResultIsSucceeded(identityResult);
+
             // Add SYSTEM and Admin user. Add lower-case, upper-case, digit and punctuation to pass password validation.
             await controller.CreateSystemUserAsync();
             var adminUser = await controller.AddNewUserAsync("admin@test.com", "admin@test.com", "Pass@word1T", ApplicationRole.SystemAdmin);

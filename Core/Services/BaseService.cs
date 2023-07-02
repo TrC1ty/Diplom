@@ -17,5 +17,19 @@ namespace Diplom.Core.Services
     /// </summary>
     public class BaseService
     {
+        /// <summary>
+        /// The ensure identity result.
+        /// </summary>
+        /// <param name="identityResult">
+        /// The identity result.
+        /// </param>
+#pragma warning disable CA1822 // Пометьте члены как статические
+        protected void EnsureIdentityOperationResult(IdentityResult identityResult)
+        {
+            if (!identityResult.Succeeded)
+            {
+                throw new Exception(string.Join(", ", identityResult.Errors.Select(e => e.Description)));
+            }
+        }
     }
 }

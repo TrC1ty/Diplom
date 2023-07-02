@@ -1,0 +1,31 @@
+﻿@page
+@model Diplom.Web.Areas.Admin.Pages.Employees.List
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Admin page";
+}
+
+<h2>Административная панель - Пользователи</h2>
+<a asp-page="Add" class="btn btn-outline-primary btn-sm mb-2">Добавить пользователя</a>
+<br />
+
+<a asp-page="Index" class="btn btn-outline-primary btn-sm mb-2">Назад</a>
+<br />
+
+<table class="table">
+    <tr>
+        <th>Дата добавления</th>
+        <th>User name</th>
+        <th>Удален</th>
+    </tr>
+
+    @foreach (var employee in Model.Employees)
+    {
+        <tr>
+            <td>@employee.DateTimeCreated.ToLocalTime().ToShortDateString()</td>
+            <td>@employee.UserName</td>
+            <td>@(employee.DateTimeDeleted.HasValue ? "Да" : "Нет")</td>
+        </tr>    
+    }
+    
+</table>
