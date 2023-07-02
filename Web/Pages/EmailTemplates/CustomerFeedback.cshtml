@@ -1,0 +1,20 @@
+﻿@using System.Globalization
+@{
+    Layout = "/Pages/EmailTemplates/_EmailTemplatesLayout.cshtml";
+
+    var typedModel = (DateTime)Model;
+}
+<p style="font-family: Calibri, Arial, Helvetica, sans-serif; font-size: 11pt">
+    Здравствуйте!
+</p>
+
+<p style="font-family: Calibri, Arial, Helvetica, sans-serif; font-size: 11pt">
+    Пользователь заполнил форму обратной связи на Калашников Market. Были заполнены следующие данные:
+</p>
+
+<table style="border-collapse:collapse;">
+    <tr>
+        <th style="font-family: Calibri, Arial, Helvetica, sans-serif; font-size: 11pt; border: 1px #CCCCCC solid; padding: 4pt 6pt 4pt 4pt; text-align: left">Дата и время</th>
+        <td style="font-family: Calibri, Arial, Helvetica, sans-serif; font-size: 11pt; border: 1px #CCCCCC solid; padding: 4pt 6pt 4pt 4pt;">@typedModel</td>
+    </tr>
+</table>

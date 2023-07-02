@@ -1,0 +1,20 @@
+﻿@page
+@model TestModel
+@{
+    ViewData["Title"] = "Страница тестера";
+}
+
+@if (Model.SuccessMessage != null)
+{
+    <div class="alert alert-success" role="alert">
+        @Model.SuccessMessage
+    </div>
+}
+
+<form method="post">
+
+    <input type="submit" asp-page-handler="SimulateException" value="Simulate exception"><br><br>
+
+    <input type="submit" asp-page-handler="SendTestEmail" value="Send test email using template">
+
+</form>

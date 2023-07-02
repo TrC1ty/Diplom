@@ -1,0 +1,50 @@
+﻿@page
+@model InitDatabaseModel
+@using Microsoft.EntityFrameworkCore
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <title>Страница создания базы</title>
+</head>
+<body>
+
+    <h1>Инициализация БД</h1>
+
+    @if (Model.RecreateDatabaseSuccess)
+    {
+        <div style="color: green">
+            <strong>База данных успешно создана.</strong>
+        </div>
+    }
+
+    @if (Model.LoadDataSuccess)
+    {
+        <div style="color: green">
+            <strong>Загрузка произведена.</strong><br>
+            <a asp-page="Test">Страница тестирования</a>
+        </div>
+    }
+
+    <form method="post" enctype="multipart/form-data">
+
+        <h2>Пересоздание БД</h2>
+
+        <p>
+            Current connection string:<br>
+            @Model.DataContext.Database.GetDbConnection().ConnectionString<br>
+            <input type="submit" asp-page-handler="RecreateDatabase" value="(Пере-)создать пустую базу данных">
+        </p>
+
+        <h2>Загрузка данных</h2>
+
+        <p>
+            <input type="submit" asp-page-handler="LoadTestData" value="Загрузить">
+        </p>
+
+    </form>
+</body>
+</html>
