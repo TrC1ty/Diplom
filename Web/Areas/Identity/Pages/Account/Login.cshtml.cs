@@ -75,12 +75,10 @@ namespace Diplom.Web.Areas.Identity.Pages.Account
                 this.ModelState.AddModelError(string.Empty, this.ErrorMessage);
             }
 
-            returnUrl ??= this.Url.Content("~/");
+            returnUrl ??= this.Url.Content("~/Employee/Index");
 
             // Clear the existing external cookie to ensure a clean login process
             await this.HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-
-            this.ExternalLogins = (await this.signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             this.ReturnUrl = returnUrl;
         }

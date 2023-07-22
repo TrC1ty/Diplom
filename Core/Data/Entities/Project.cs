@@ -13,7 +13,19 @@ namespace Diplom.Core.Data.Entities
     /// </summary>
     public class Project
     {
-        private ApplicationUser? ownerUser;
+        private ApplicationUser? user;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Project"/> class.
+        /// </summary>
+        /// <param name="name">Project name.</param>
+        /// <param name="projectCode">Project code.</param>
+        public Project(string name, string projectCode)
+        {
+            this.Name = name;
+            this.ProjectCode = projectCode;
+            this.DateTimeCreated = DateTime.Now;
+        }
 
         /// <summary>
         /// Gets or sets project id.
@@ -23,7 +35,7 @@ namespace Diplom.Core.Data.Entities
         /// <summary>
         /// Gets or sets project name.
         /// </summary>
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets project documentation.
@@ -38,12 +50,12 @@ namespace Diplom.Core.Data.Entities
         /// <summary>
         /// Gets or sets datetime created.
         /// </summary>
-        public DateTime? DateTimeCreated { get; set; }
+        public DateTime DateTimeCreated { get; set; }
 
         /// <summary>
         /// Gets or sets project code.
         /// </summary>
-        public string? ProjectCode { get; set; }
+        public string ProjectCode { get; set; }
 
         /// <summary>
         /// Gets or sets user id.
@@ -53,11 +65,11 @@ namespace Diplom.Core.Data.Entities
         /// <summary>
         /// Gets or sets user instance.
         /// </summary>
-        [BackingField(nameof(this.ownerUser))]
-        public ApplicationUser OwnerUser
+        [BackingField(nameof(this.user))]
+        public ApplicationUser User
         {
-            get => this.ownerUser ?? throw new InvalidOperationException($"Access to uninitialized property: {nameof(this.ownerUser)}.");
-            set => this.ownerUser = value;
+            get => this.user ?? throw new InvalidOperationException($"Access to uninitialized property: {nameof(this.user)}.");
+            set => this.user = value;
         }
 
         /// <summary>

@@ -1,0 +1,52 @@
+﻿@page "/projects/{ProjectId}/participants"
+@model Diplom.Web.Areas.Employee.Pages.Projects.Participants
+@{
+    ViewData["Title"] = "Проект";
+}
+
+@section Navbar {
+    <a class="navbar-link" asp-page="/Index"><i class="bi bi-arrow-left"></i>К проектам</a>
+}
+
+@section PageName {
+    @Model.Project!.Name
+}
+
+<ul class="sidenav nav-tabs" id="myTab" role="tablist">
+    <li>
+        <a asp-page="/Projects/View" asp-route-projectId="@Model.ProjectId" class="sidenav-link" role="tab">
+            <img src="~/images/bootstrap/info.svg" />
+            <i class="bi bi-house"></i>Паспорт проекта
+        </a>
+    </li>
+    <li>
+        <a asp-page="/Projects/Participants" asp-route-projectId="@Model.ProjectId" class="sidenav-link sidenav-link-active" role="tab">
+            <img src="~/images/bootstrap/participant.svg" />
+            <i class="bi bi-people"></i>Участники
+        </a>
+    </li>
+    <li>
+        <a asp-page="/Projects/Documentation" asp-route-projectId="@Model.ProjectId" class="sidenav-link" role="tab">
+            <img src="~/images/bootstrap/doc.svg" />
+            <i class="bi bi-file-earmark"></i>Документация
+        </a>
+    </li>
+    <li>
+        <a asp-page="/Projects/Reestr" asp-route-projectId="@Model.ProjectId" class="sidenav-link" role="tab">
+            <img src="~/images/bootstrap/list.svg" />
+            <i class="bi bi-file-earmark"></i>Реестр ИД
+        </a>
+    </li>
+    <li>
+        <a asp-page="/Projects/Works" asp-route-projectId="@Model.ProjectId" class="sidenav-link" role="tab">
+            <img src="~/images/bootstrap/work.svg" />
+            <i class="bi bi-file-earmark"></i>Работы
+        </a>
+    </li>
+    <li>
+        <a asp-page="/Projects/Materials" asp-route-projectId="@Model.ProjectId" class="sidenav-link" role="tab">
+            <img src="~/images/bootstrap/material.svg" />
+            <i class="bi bi-file-earmark"></i>Материалы
+        </a>
+    </li>
+</ul>

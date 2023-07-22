@@ -116,6 +116,11 @@ namespace Diplom.Core.Data
                     .IsRequired();
             });
 
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(u => u.Projects)
+                .WithOne(p => p.User)
+                .HasForeignKey(p => p.UserId);
+
             modelBuilder.Entity<Project>()
                 .HasMany(p => p.Participants)
                 .WithOne(p => p.Project)

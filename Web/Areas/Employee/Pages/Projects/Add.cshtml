@@ -1,0 +1,65 @@
+﻿@page
+@model Diplom.Web.Areas.Employee.Pages.Projects.Add
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@section Navbar {
+    <a class="navbar-link" asp-page="/Index"><i class="bi bi-arrow-left"></i>К проектам</a>
+}
+
+@section PageName {
+    Создание проекта
+}
+
+
+<div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+    <h1>Создание проекта</h1>
+</div>
+<div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+    <form action="" method="post">
+        <div class="row mb-3 align-items-center">
+            <div class="col-12 col-md-3">
+                <label asp-for="Name" class="col-form-label col-form-label-lg p-0"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Name" class="form-control form-control-lg">
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3 align-items-center">
+            <div class="col-12 col-md-3">
+                <label asp-for="ProjectDocumentation" class="col-form-label col-form-label-lg p-0"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="ProjectDocumentation" class="form-control form-control-lg">
+            </div>
+        </div>
+
+        <div class="row mb-3 align-items-center">
+            <div class="col-12 col-md-3">
+                <label asp-for="BuildingAddress" class="col-form-label col-form-label-lg p-0"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="BuildingAddress" class="form-control form-control-lg">
+            </div>
+        </div>
+
+        <div class="row mb-3 align-items-center">
+            <div class="col-12 col-md-3">
+                <label asp-for="ProjectCode" class="col-form-label col-form-label-lg p-0"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="ProjectCode" class="form-control form-control-lg">
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="ProjectCode" class="text-danger"></span>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary my-2">Сохранить</button>
+    </form>
+</div>

@@ -1,0 +1,115 @@
+﻿@page "/projects/{ProjectId}"
+@model Diplom.Web.Areas.Employee.Pages.Projects.View
+@{
+    ViewData["Title"] = "Проект";
+}
+
+@section Navbar {
+    <a class="navbar-link" asp-page="/Index"><i class="bi bi-arrow-left"></i>К проектам</a>
+}
+
+@section PageName {
+    @Model.Project!.Name
+}
+
+<ul class="sidenav nav-tabs" id="myTab" role="tablist">
+    <li>
+        <a asp-page="/Projects/View" asp-route-projectId="@Model.ProjectId" class="sidenav-link sidenav-link-active" role="tab">
+            <img src="~/images/bootstrap/info.svg" />
+            <i class="bi bi-house"></i>Паспорт проекта
+        </a>
+    </li>
+    <li>
+        <a asp-page="/Projects/Participants" asp-route-projectId="@Model.ProjectId" class="sidenav-link" role="tab">
+            <img src="~/images/bootstrap/participant.svg" />
+            <i class="bi bi-people"></i>Участники
+        </a>
+    </li>
+    <li>
+        <a asp-page="/Projects/Documentation" asp-route-projectId="@Model.ProjectId" class="sidenav-link" role="tab">
+            <img src="~/images/bootstrap/doc.svg" />
+            <i class="bi bi-file-earmark"></i>Документация
+        </a>
+    </li>
+    <li>
+        <a asp-page="/Projects/Reestr" asp-route-projectId="@Model.ProjectId" class="sidenav-link" role="tab">
+            <img src="~/images/bootstrap/list.svg" />
+            <i class="bi bi-file-earmark"></i>Реестр ИД
+        </a>
+    </li>
+    <li>
+        <a asp-page="/Projects/Works" asp-route-projectId="@Model.ProjectId" class="sidenav-link" role="tab">
+            <img src="~/images/bootstrap/work.svg" />
+            <i class="bi bi-file-earmark"></i>Работы
+        </a>
+    </li>
+    <li>
+        <a asp-page="/Projects/Materials" asp-route-projectId="@Model.ProjectId" class="sidenav-link" role="tab">
+            <img src="~/images/bootstrap/material.svg" />
+            <i class="bi bi-file-earmark"></i>Материалы
+        </a>
+    </li>
+</ul>
+<div class="content">
+    <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="col-md-auto">
+            <div class="row">
+                <div class="col">
+                    <p style="color: rgba(0, 0, 0, 0.54);">Паспорт проекта</p>
+                </div>
+                <div class="col-2" style="text-align: right">
+                    <form method="post">
+                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Projects/Edit" asp-route-projectId="@Model.ProjectId"><img src="~/images/bootstrap/edit.svg" style="display: block; margin: 0 auto;" /></a>
+                        <button type="submit" class="btn btn-outline-secondary btn-sm" asp-page-handler="DeleteProject" onclick="return confirm('Вы уверены, что хотите удалить этот проект?');"><img src="~/images/bootstrap/trash.svg" style="display: block; margin: 0 auto;" /></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="information">
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Наименование</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @Model.Project!.Name
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес строительства</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @Model.Project.BuldingAddress
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Документация</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @Model.Project.ProjectDocumentation
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Код проекта</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @Model.Project.ProjectCode
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Дата создания</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @Model.Project.DateTimeCreated
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

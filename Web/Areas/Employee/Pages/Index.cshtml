@@ -1,9 +1,46 @@
 ﻿@page
-@model IndexModel
+@model Diplom.Web.Areas.Employee.Pages.Index
 @{
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+@section Navbar {
+    <img src="~/images/home.svg" alt="home" width="40px" class="ps-3" />
+}
+
+@section PageName {
+    Список проектов
+}
+
+
+<div class="container">
+    <div class="flex-container" style="display: flex;margin-top: 10px;">
+        <div class="flex-item" style="flex-basis: 100%;">
+            <div class="child left" style="flex-grow:2; padding: 10px;">
+                <div class="mb-2" style="text-align: right">
+                    <a asp-page="/Projects/Add" class="btn btn-primary btn-sm">Создать новый проект</a>
+                </div>
+                <form method="post">
+                    <div class="row" data-masonry=''>
+                        @foreach (var project in Model.UserProjects)
+                        {
+                            <div class="col-6 mb-2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@project.Name</h5>
+                                        <p class="card-text">@project.BuldingAddress</p>
+                                        <div class="text-md-end">
+                                            <a asp-page="/Projects/View" asp-route-projectId="@project.Id" type="button" class="btn btn-primary btn-sm">Перейти</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 </div>
