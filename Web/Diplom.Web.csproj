@@ -73,6 +73,7 @@
 
 	<ItemGroup>
 	  <Folder Include="wwwroot\doc\" />
+	  <Folder Include="Controllers\" />
 	</ItemGroup>
 
 </Project>

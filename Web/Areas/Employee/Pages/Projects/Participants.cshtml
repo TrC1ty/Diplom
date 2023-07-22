@@ -1,4 +1,6 @@
 ﻿@page "/projects/{ProjectId}/participants"
+@using Diplom.Core.Controllers
+@using Diplom.Core.Data.Entities
 @model Diplom.Web.Areas.Employee.Pages.Projects.Participants
 @{
     ViewData["Title"] = "Проект";
@@ -50,3 +52,1946 @@
         </a>
     </li>
 </ul>
+<div class="content">
+    <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        @*Type1*@
+        <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="col-12 col-md-7 label">
+                        <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">
+                            Застройщик
+                        </span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type1))
+                        {
+                            var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type1);
+                            MainController.GetParticipantName(participant);
+                        }
+                    </div>
+                </div>
+
+                <div class="col-2" style="text-align: right">
+                    @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type1))
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType1" aria-expanded="false" aria-controls="collapseType1">
+                            <img src="~/images/bootstrap/arrow-down.svg" />
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                            <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
+                        </button>
+                    }
+                </div>
+            </div>
+            <div class="collapse" id="collapseType1">
+                <div class="card card-body">
+                    @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type1))
+                    {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type1);
+                        var type = MainController.GetParticipantType(participant);
+                        if (type == 0)
+                        {
+                            var person = (NaturalPerson)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Должность</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Post
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Паспортные данные</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else if (type == 1)
+                        {
+                            var entity = (LegalEntity)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Ogrn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Почта</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Mail
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            var entrepreneur = (IndividualEntrepreneur)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Краткое наименование</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.ShortName
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        @*Type2*@
+        <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="col-12 col-md-7 label">
+                        <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">
+                            Лицо, осуществляющее строительство
+                        </span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type2))
+                        {
+                            var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type2);
+                            MainController.GetParticipantName(participant);
+                        }
+                    </div>
+                </div>
+
+                <div class="col-2" style="text-align: right">
+                    @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type2))
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType2" aria-expanded="false" aria-controls="collapseType2">
+                            <img src="~/images/bootstrap/arrow-down.svg" />
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                            <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
+                        </button>
+                    }
+                </div>
+            </div>
+            <div class="collapse" id="collapseType2">
+                <div class="card card-body">
+                    @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type2))
+                    {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type2);
+                        var type = MainController.GetParticipantType(participant);
+                        if (type == 0)
+                        {
+                            var person = (NaturalPerson)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Должность</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Post
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Паспортные данные</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else if (type == 1)
+                        {
+                            var entity = (LegalEntity)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Ogrn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Почта</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Mail
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            var entrepreneur = (IndividualEntrepreneur)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Краткое наименование</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.ShortName
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        @*Type3*@
+        <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="col-12 col-md-8 label">
+                        <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">
+                            Лицо, осуществляющее подготовку проектной документации
+                        </span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type3))
+                        {
+                            var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type3);
+                            MainController.GetParticipantName(participant);
+                        }
+                    </div>
+                </div>
+
+                <div class="col-2" style="text-align: right">
+                    @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type3))
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType3" aria-expanded="false" aria-controls="collapseType3">
+                            <img src="~/images/bootstrap/arrow-down.svg" />
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                            <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
+                        </button>
+                    }
+                </div>
+            </div>
+            <div class="collapse" id="collapseType3">
+                <div class="card card-body">
+                    @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type3))
+                    {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type3);
+                        var type = MainController.GetParticipantType(participant);
+                        if (type == 0)
+                        {
+                            var person = (NaturalPerson)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Должность</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Post
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Паспортные данные</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else if (type == 1)
+                        {
+                            var entity = (LegalEntity)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Ogrn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Почта</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Mail
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            var entrepreneur = (IndividualEntrepreneur)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Краткое наименование</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.ShortName
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        @*Type4*@
+        <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="col-12 col-md-4 label">
+                        <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">
+                            Лицо, выполнившее работы
+                        </span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type4))
+                        {
+                            var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type4);
+                            MainController.GetParticipantName(participant);
+                        }
+                    </div>
+                </div>
+
+                <div class="col-2" style="text-align: right">
+                    @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type4))
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType4" aria-expanded="false" aria-controls="collapseType4">
+                            <img src="~/images/bootstrap/arrow-down.svg" />
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                            <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
+                        </button>
+                    }
+                </div>
+            </div>
+            <div class="collapse" id="collapseType4">
+                <div class="card card-body">
+                    @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type4))
+                    {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type4);
+                        var type = MainController.GetParticipantType(participant);
+                        if (type == 0)
+                        {
+                            var person = (NaturalPerson)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Должность</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Post
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Паспортные данные</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else if (type == 1)
+                        {
+                            var entity = (LegalEntity)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Ogrn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Почта</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Mail
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            var entrepreneur = (IndividualEntrepreneur)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Краткое наименование</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.ShortName
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        @*Type5*@
+        <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="col-12 col-md-4 label">
+                        <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">
+                            Представитель застройщика
+                        </span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type5))
+                        {
+                            var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type5);
+                            MainController.GetParticipantName(participant);
+                        }
+                    </div>
+                </div>
+
+                <div class="col-2" style="text-align: right">
+                    @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type5))
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType5" aria-expanded="false" aria-controls="collapseType5">
+                            <img src="~/images/bootstrap/arrow-down.svg" />
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                            <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
+                        </button>
+                    }
+                </div>
+            </div>
+            <div class="collapse" id="collapseType5">
+                <div class="card card-body">
+                    @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type5))
+                    {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type5);
+                        var type = MainController.GetParticipantType(participant);
+                        if (type == 0)
+                        {
+                            var person = (NaturalPerson)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Должность</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Post
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Паспортные данные</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else if (type == 1)
+                        {
+                            var entity = (LegalEntity)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Ogrn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Почта</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Mail
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            var entrepreneur = (IndividualEntrepreneur)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Краткое наименование</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.ShortName
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        @*Type6*@
+        <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="col-12 col-md-7 label">
+                        <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">
+                            Представитель лица, осуществляющего строительство
+                        </span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type6))
+                        {
+                            var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type6);
+                            MainController.GetParticipantName(participant);
+                        }
+                    </div>
+                </div>
+
+                <div class="col-2" style="text-align: right">
+                    @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type6))
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType6" aria-expanded="false" aria-controls="collapseType6">
+                            <img src="~/images/bootstrap/arrow-down.svg" />
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                            <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
+                        </button>
+                    }
+                </div>
+            </div>
+            <div class="collapse" id="collapseType6">
+                <div class="card card-body">
+                    @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type6))
+                    {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type6);
+                        var type = MainController.GetParticipantType(participant);
+                        if (type == 0)
+                        {
+                            var person = (NaturalPerson)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Должность</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Post
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Паспортные данные</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else if (type == 1)
+                        {
+                            var entity = (LegalEntity)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Ogrn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Почта</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Mail
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            var entrepreneur = (IndividualEntrepreneur)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Краткое наименование</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.ShortName
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        @*Type7*@
+        <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="col-12 col-md-8 label">
+                        <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">
+                            Представитель лица по вопросам строительного контроля
+                        </span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type7))
+                        {
+                            var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type7);
+                            MainController.GetParticipantName(participant);
+                        }
+                    </div>
+                </div>
+
+                <div class="col-2" style="text-align: right">
+                    @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type7))
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType7" aria-expanded="false" aria-controls="collapseType7">
+                            <img src="~/images/bootstrap/arrow-down.svg" />
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                            <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
+                        </button>
+                    }
+                </div>
+            </div>
+            <div class="collapse" id="collapseType7">
+                <div class="card card-body">
+                    @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type7))
+                    {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type7);
+                        var type = MainController.GetParticipantType(participant);
+                        if (type == 0)
+                        {
+                            var person = (NaturalPerson)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Должность</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Post
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Паспортные данные</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else if (type == 1)
+                        {
+                            var entity = (LegalEntity)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Ogrn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Почта</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Mail
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            var entrepreneur = (IndividualEntrepreneur)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Краткое наименование</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.ShortName
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        @*Type8*@
+        <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="col-12 col-md-9  label">
+                        <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">
+                            Представитель лица, осуществляющего подготовку проектной документации
+                        </span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type8))
+                        {
+                            var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type8);
+                            MainController.GetParticipantName(participant);
+                        }
+                    </div>
+                </div>
+
+                <div class="col-2" style="text-align: right">
+                    @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type8))
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType8" aria-expanded="false" aria-controls="collapseType8">
+                            <img src="~/images/bootstrap/arrow-down.svg" />
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                            <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
+                        </button>
+                    }
+                </div>
+            </div>
+            <div class="collapse" id="collapseType8">
+                <div class="card card-body">
+                    @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type8))
+                    {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type8);
+                        var type = MainController.GetParticipantType(participant);
+                        if (type == 0)
+                        {
+                            var person = (NaturalPerson)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Должность</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Post
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Паспортные данные</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else if (type == 1)
+                        {
+                            var entity = (LegalEntity)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Ogrn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Почта</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Mail
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            var entrepreneur = (IndividualEntrepreneur)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Краткое наименование</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.ShortName
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        @*Type9*@
+        <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="col-12 col-md-7 label">
+                        <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">
+                            Представитель лица, выполнившего работы
+                        </span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type9))
+                        {
+                            var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type9);
+                            MainController.GetParticipantName(participant);
+                        }
+                    </div>
+                </div>
+
+                <div class="col-2" style="text-align: right">
+                    @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type9))
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType9" aria-expanded="false" aria-controls="collapseType9">
+                            <img src="~/images/bootstrap/arrow-down.svg" />
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                            <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
+                        </button>
+                    }
+                </div>
+            </div>
+            <div class="collapse" id="collapseType9">
+                <div class="card card-body">
+                    @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type9))
+                    {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type9);
+                        var type = MainController.GetParticipantType(participant);
+                        if (type == 0)
+                        {
+                            var person = (NaturalPerson)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Должность</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Post
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Паспортные данные</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else if (type == 1)
+                        {
+                            var entity = (LegalEntity)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Ogrn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Почта</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Mail
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            var entrepreneur = (IndividualEntrepreneur)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Краткое наименование</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.ShortName
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        @*Type10*@
+        <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="col-12 col-md-9 label">
+                        <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">
+                            Иные представители лиц, участвующих в освидетельствовании
+                        </span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type10))
+                        {
+                            var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type10);
+                            MainController.GetParticipantName(participant);
+                        }
+                    </div>
+                </div>
+
+                <div class="col-2" style="text-align: right">
+                    @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type10))
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType10" aria-expanded="false" aria-controls="collapseType10">
+                            <img src="~/images/bootstrap/arrow-down.svg" />
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                            <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
+                        </button>
+                    }
+                </div>
+            </div>
+            <div class="collapse" id="collapseType10">
+                <div class="card card-body">
+                    @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type10))
+                    {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type10);
+                        var type = MainController.GetParticipantType(participant);
+                        if (type == 0)
+                        {
+                            var person = (NaturalPerson)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Должность</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Post
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Паспортные данные</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else if (type == 1)
+                        {
+                            var entity = (LegalEntity)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Ogrn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Почта</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entity.Mail
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            var entrepreneur = (IndividualEntrepreneur)participant;
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Inn
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.Address
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Краткое наименование</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @entrepreneur.ShortName
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

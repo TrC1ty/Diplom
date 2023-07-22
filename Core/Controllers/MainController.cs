@@ -66,6 +66,51 @@ namespace Diplom.Core.Controllers
         }
 
         /// <summary>
+        /// Get participant name.
+        /// </summary>
+        /// <param name="participant">Participant.</param>
+        /// <returns>Participant name.</returns>
+        public static string GetParticipantName(Participant participant)
+        {
+            if (participant is NaturalPerson)
+            {
+                var person = (NaturalPerson)participant;
+                return $"{person.Surname} {person.Name} {person.Patronymic}";
+            }
+            else if (participant is LegalEntity)
+            {
+                var entity = (LegalEntity)participant;
+                return entity.LegalName!;
+            }
+            else
+            {
+                var enterpreneur = (IndividualEntrepreneur)participant;
+                return enterpreneur.LegalName!;
+            }
+        }
+
+        /// <summary>
+        /// Get participant type.
+        /// </summary>
+        /// <param name="participant">Participant.</param>
+        /// <returns>Participant type.</returns>
+        public static int GetParticipantType(Participant participant)
+        {
+            if (participant is NaturalPerson)
+            {
+                return 0;
+            }
+            else if (participant is LegalEntity)
+            {
+                return 1;
+            }
+            else
+            {
+                return 2;
+            }
+        }
+
+        /// <summary>
         /// Adds new user. Saves changes to the database.
         /// </summary>
         /// <param name="userName">User name of the new user.</param>

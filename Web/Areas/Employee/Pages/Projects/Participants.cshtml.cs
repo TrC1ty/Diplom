@@ -9,6 +9,7 @@ namespace Diplom.Web.Areas.Employee.Pages.Projects
     using Diplom.Web.Pages;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Microsoft.EntityFrameworkCore;
 
     /// <summary>
     /// Page model class for the Index page.
@@ -31,7 +32,9 @@ namespace Diplom.Web.Areas.Employee.Pages.Projects
         /// </summary>
         public void OnGet()
         {
-            this.Project = this.DataContext.Projects.Single(p => p.Id == this.ProjectId);
+            this.Project = this.DataContext.Projects
+                .Include(p => p.Participants)
+                .Single(p => p.Id == this.ProjectId);
         }
     }
 }
