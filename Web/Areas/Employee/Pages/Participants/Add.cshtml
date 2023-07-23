@@ -1,4 +1,165 @@
-﻿@page
+﻿@page "/projects/{ProjectId}/Participant/Add/{Type}"
 @model Diplom.Web.Areas.Employee.Pages.Participants.AddModel
 @{
+}
+
+@section Navbar {
+    <a class="navbar-link" asp-page="/Projects/Participants" asp-route-projectId="@Model.ProjectId"><i class="bi bi-arrow-left"></i>К участникам</a>
+}
+
+@section PageName {
+    Создание участника
+}
+<div id="slide1">
+    <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <h1>Выбор статуса участника</h1>
+    </div>
+    <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <div class="form-group" id="select">
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Выберите статус</option>
+                <option value="1">Физическое лицо</option>
+                <option value="2">Юридическое лицо</option>
+                <option value="3">Индивидуальный предприниматель</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="slide2" style="display: none">
+    <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <h1>Добавление физического лица</h1>
+    </div>
+    <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <form method="post">
+            <div class="form-group">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-12 col-md-3">
+                        <label class="col-form-label p-0" asp-for="Name"></label>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input asp-for="Name" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-12 col-md-3">
+                        <label class="col-form-label p-0" asp-for="Surname"></label>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input asp-for="Surname" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <span asp-validation-for="Surname" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-12 col-md-3">
+                        <label class="col-form-label p-0" asp-for="Patronymic"></label>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input asp-for="Patronymic" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <span asp-validation-for="Patronymic" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" asp-page-handler="AddNP" class="btn btn-primary my-2">Сохранить</button>
+        </form>
+    </div>
+</div>
+
+<div id="slide3" style="display: none">
+    <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <h1>Добавление юридического лица</h1>
+    </div>
+    <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <form method="post">
+            <div class="form-group">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-12 col-md-3">
+                        <label class="col-form-label p-0" asp-for="LegalName"></label>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input asp-for="LegalName" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <span asp-validation-for="LegalName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" asp-page-handler="AddLE" class="btn btn-primary my-2">Сохранить</button>
+        </form>
+    </div>
+</div>
+
+<div id="slide4" style="display: none">
+    <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <h1>Добавление индивидуального предпринимателя</h1>
+    </div>
+    <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <form method="post">
+            <div class="form-group">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-12 col-md-3">
+                        <label class="col-form-label p-0" asp-for="LegalName"></label>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input asp-for="LegalName" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <span asp-validation-for="LegalName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" asp-page-handler="AddIE" class="btn btn-primary my-2">Сохранить</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        let handler = window.location.search;
+        if (handler.includes("AddNP")) {
+            document.getElementById("slide1").style.display = "none";
+            document.getElementById("slide2").style.display = "block";
+        }
+        else if (handler.includes("AddLE")) {
+            document.getElementById("slide1").style.display = "none";
+            document.getElementById("slide3").style.display = "block";
+        }
+        else if (handler.includes("AddIE")) {
+            document.getElementById("slide1").style.display = "none";
+            document.getElementById("slide4").style.display = "block";
+        }
+
+        let select = document.getElementById("select");
+        let participantType = 0;
+        select.addEventListener("change", (event) => {
+            participantType = event.srcElement.value;
+            document.getElementById("slide1").style.display = "none";
+            switch (participantType) {
+                case "1":
+                    document.getElementById("slide2").style.display = "block";
+                    break;
+                case "2":
+                    document.getElementById("slide3").style.display = "block";
+                    break;
+                default:
+                    document.getElementById("slide4").style.display = "block";
+            }
+        });
+    </script>
 }

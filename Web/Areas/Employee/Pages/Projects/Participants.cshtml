@@ -53,7 +53,7 @@
     </li>
 </ul>
 <div class="content">
-    <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="information">
         @*Type1*@
         <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
             <div class="row mb-2">
@@ -67,7 +67,8 @@
                         @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type1))
                         {
                             var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type1);
-                            MainController.GetParticipantName(participant);
+                            var name = MainController.GetParticipantName(participant);
+                            <div class="ms-3">@name</div>
                         }
                     </div>
                 </div>
@@ -75,15 +76,19 @@
                 <div class="col-2" style="text-align: right">
                     @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type1))
                     {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type1);
+                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Participants/View" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.ProjectId">
+                            <img src="~/images/look.svg" width="21" style="display: block; margin: 0 auto;" />
+                        </a>
                         <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType1" aria-expanded="false" aria-controls="collapseType1">
                             <img src="~/images/bootstrap/arrow-down.svg" />
                         </button>
                     }
                     else
                     {
-                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                        <a class="btn btn-outline-secondary btn-sm" type="button" asp-page="/Participants/Add" asp-route-projectId="@Model.ProjectId" asp-route-type="1">
                             <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
-                        </button>
+                        </a>
                     }
                 </div>
             </div>
@@ -129,6 +134,18 @@
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Inn
                                             </div>
                                         </div>
                                     </div>
@@ -261,7 +278,8 @@
                         @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type2))
                         {
                             var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type2);
-                            MainController.GetParticipantName(participant);
+                            var name = MainController.GetParticipantName(participant);
+                            <div class="ms-3">@name</div>
                         }
                     </div>
                 </div>
@@ -269,15 +287,19 @@
                 <div class="col-2" style="text-align: right">
                     @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type2))
                     {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type2);
+                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Participants/View" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.ProjectId">
+                            <img src="~/images/look.svg" width="21" style="display: block; margin: 0 auto;" />
+                        </a>
                         <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType2" aria-expanded="false" aria-controls="collapseType2">
                             <img src="~/images/bootstrap/arrow-down.svg" />
                         </button>
                     }
                     else
                     {
-                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                        <a class="btn btn-outline-secondary btn-sm" type="button" asp-page="/Participants/Add" asp-route-projectId="@Model.ProjectId" asp-route-type="2">
                             <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
-                        </button>
+                        </a>
                     }
                 </div>
             </div>
@@ -323,6 +345,18 @@
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Inn
                                             </div>
                                         </div>
                                     </div>
@@ -455,7 +489,8 @@
                         @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type3))
                         {
                             var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type3);
-                            MainController.GetParticipantName(participant);
+                            var name = MainController.GetParticipantName(participant);
+                            <div class="ms-3">@name</div>
                         }
                     </div>
                 </div>
@@ -463,15 +498,19 @@
                 <div class="col-2" style="text-align: right">
                     @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type3))
                     {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type3);
+                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Participants/View" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.ProjectId">
+                            <img src="~/images/look.svg" width="21" style="display: block; margin: 0 auto;" />
+                        </a>
                         <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType3" aria-expanded="false" aria-controls="collapseType3">
                             <img src="~/images/bootstrap/arrow-down.svg" />
                         </button>
                     }
                     else
                     {
-                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                        <a class="btn btn-outline-secondary btn-sm" type="button" asp-page="/Participants/Add" asp-route-projectId="@Model.ProjectId" asp-route-type="3">
                             <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
-                        </button>
+                        </a>
                     }
                 </div>
             </div>
@@ -517,6 +556,18 @@
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Inn
                                             </div>
                                         </div>
                                     </div>
@@ -640,7 +691,7 @@
         <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
             <div class="row mb-2">
                 <div class="col">
-                    <div class="col-12 col-md-4 label">
+                    <div class="col-12 col-md-7 label">
                         <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">
                             Лицо, выполнившее работы
                         </span>
@@ -649,7 +700,8 @@
                         @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type4))
                         {
                             var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type4);
-                            MainController.GetParticipantName(participant);
+                            var name = MainController.GetParticipantName(participant);
+                            <div class="ms-3">@name</div>
                         }
                     </div>
                 </div>
@@ -657,15 +709,19 @@
                 <div class="col-2" style="text-align: right">
                     @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type4))
                     {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type4);
+                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Participants/View" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.ProjectId">
+                            <img src="~/images/look.svg" width="21" style="display: block; margin: 0 auto;" />
+                        </a>
                         <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType4" aria-expanded="false" aria-controls="collapseType4">
                             <img src="~/images/bootstrap/arrow-down.svg" />
                         </button>
                     }
                     else
                     {
-                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                        <a class="btn btn-outline-secondary btn-sm" type="button" asp-page="/Participants/Add" asp-route-projectId="@Model.ProjectId" asp-route-type="4">
                             <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
-                        </button>
+                        </a>
                     }
                 </div>
             </div>
@@ -711,6 +767,18 @@
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Inn
                                             </div>
                                         </div>
                                     </div>
@@ -834,7 +902,7 @@
         <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
             <div class="row mb-2">
                 <div class="col">
-                    <div class="col-12 col-md-4 label">
+                    <div class="col-12 col-md-7 label">
                         <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">
                             Представитель застройщика
                         </span>
@@ -843,7 +911,8 @@
                         @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type5))
                         {
                             var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type5);
-                            MainController.GetParticipantName(participant);
+                            var name = MainController.GetParticipantName(participant);
+                            <div class="ms-3">@name</div>
                         }
                     </div>
                 </div>
@@ -851,15 +920,19 @@
                 <div class="col-2" style="text-align: right">
                     @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type5))
                     {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type5);
+                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Participants/View" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.ProjectId">
+                            <img src="~/images/look.svg" width="21" style="display: block; margin: 0 auto;" />
+                        </a>
                         <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType5" aria-expanded="false" aria-controls="collapseType5">
                             <img src="~/images/bootstrap/arrow-down.svg" />
                         </button>
                     }
                     else
                     {
-                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                        <a class="btn btn-outline-secondary btn-sm" type="button" asp-page="/Participants/Add" asp-route-projectId="@Model.ProjectId" asp-route-type="5">
                             <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
-                        </button>
+                        </a>
                     }
                 </div>
             </div>
@@ -905,6 +978,18 @@
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Inn
                                             </div>
                                         </div>
                                     </div>
@@ -1037,7 +1122,8 @@
                         @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type6))
                         {
                             var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type6);
-                            MainController.GetParticipantName(participant);
+                            var name = MainController.GetParticipantName(participant);
+                            <div class="ms-3">@name</div>
                         }
                     </div>
                 </div>
@@ -1045,15 +1131,19 @@
                 <div class="col-2" style="text-align: right">
                     @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type6))
                     {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type6);
+                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Participants/View" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.ProjectId">
+                            <img src="~/images/look.svg" width="21" style="display: block; margin: 0 auto;" />
+                        </a>
                         <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType6" aria-expanded="false" aria-controls="collapseType6">
                             <img src="~/images/bootstrap/arrow-down.svg" />
                         </button>
                     }
                     else
                     {
-                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                        <a class="btn btn-outline-secondary btn-sm" type="button" asp-page="/Participants/Add" asp-route-projectId="@Model.ProjectId" asp-route-type="6">
                             <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
-                        </button>
+                        </a>
                     }
                 </div>
             </div>
@@ -1099,6 +1189,18 @@
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Inn
                                             </div>
                                         </div>
                                     </div>
@@ -1222,7 +1324,7 @@
         <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
             <div class="row mb-2">
                 <div class="col">
-                    <div class="col-12 col-md-8 label">
+                    <div class="col-12 col-md-7 label">
                         <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">
                             Представитель лица по вопросам строительного контроля
                         </span>
@@ -1231,7 +1333,8 @@
                         @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type7))
                         {
                             var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type7);
-                            MainController.GetParticipantName(participant);
+                            var name = MainController.GetParticipantName(participant);
+                            <div class="ms-3">@name</div>
                         }
                     </div>
                 </div>
@@ -1239,15 +1342,19 @@
                 <div class="col-2" style="text-align: right">
                     @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type7))
                     {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type7);
+                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Participants/View" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.ProjectId">
+                            <img src="~/images/look.svg" width="21" style="display: block; margin: 0 auto;" />
+                        </a>
                         <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType7" aria-expanded="false" aria-controls="collapseType7">
                             <img src="~/images/bootstrap/arrow-down.svg" />
                         </button>
                     }
                     else
                     {
-                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                        <a class="btn btn-outline-secondary btn-sm" type="button" asp-page="/Participants/Add" asp-route-projectId="@Model.ProjectId" asp-route-type="7">
                             <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
-                        </button>
+                        </a>
                     }
                 </div>
             </div>
@@ -1293,6 +1400,18 @@
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Inn
                                             </div>
                                         </div>
                                     </div>
@@ -1416,7 +1535,7 @@
         <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
             <div class="row mb-2">
                 <div class="col">
-                    <div class="col-12 col-md-9  label">
+                    <div class="col-12 col-md-9 label">
                         <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">
                             Представитель лица, осуществляющего подготовку проектной документации
                         </span>
@@ -1425,7 +1544,8 @@
                         @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type8))
                         {
                             var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type8);
-                            MainController.GetParticipantName(participant);
+                            var name = MainController.GetParticipantName(participant);
+                            <div class="ms-3">@name</div>
                         }
                     </div>
                 </div>
@@ -1433,15 +1553,19 @@
                 <div class="col-2" style="text-align: right">
                     @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type8))
                     {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type8);
+                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Participants/View" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.ProjectId">
+                            <img src="~/images/look.svg" width="21" style="display: block; margin: 0 auto;" />
+                        </a>
                         <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType8" aria-expanded="false" aria-controls="collapseType8">
                             <img src="~/images/bootstrap/arrow-down.svg" />
                         </button>
                     }
                     else
                     {
-                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                        <a class="btn btn-outline-secondary btn-sm" type="button" asp-page="/Participants/Add" asp-route-projectId="@Model.ProjectId" asp-route-type="8">
                             <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
-                        </button>
+                        </a>
                     }
                 </div>
             </div>
@@ -1487,6 +1611,18 @@
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Inn
                                             </div>
                                         </div>
                                     </div>
@@ -1610,16 +1746,17 @@
         <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
             <div class="row mb-2">
                 <div class="col">
-                    <div class="col-12 col-md-7 label">
+                    <div class="col-12 col-md-10 label">
                         <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">
-                            Представитель лица, выполнившего работы
+                            Представитель лица, выполнившего работы, подлежащие освидетельствованию
                         </span>
                     </div>
                     <div class="col-12 col-md-4">
                         @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type9))
                         {
                             var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type9);
-                            MainController.GetParticipantName(participant);
+                            var name = MainController.GetParticipantName(participant);
+                            <div class="ms-3">@name</div>
                         }
                     </div>
                 </div>
@@ -1627,15 +1764,19 @@
                 <div class="col-2" style="text-align: right">
                     @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type9))
                     {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type9);
+                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Participants/View" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.ProjectId">
+                            <img src="~/images/look.svg" width="21" style="display: block; margin: 0 auto;" />
+                        </a>
                         <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType9" aria-expanded="false" aria-controls="collapseType9">
                             <img src="~/images/bootstrap/arrow-down.svg" />
                         </button>
                     }
                     else
                     {
-                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                        <a class="btn btn-outline-secondary btn-sm" type="button" asp-page="/Participants/Add" asp-route-projectId="@Model.ProjectId" asp-route-type="9">
                             <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
-                        </button>
+                        </a>
                     }
                 </div>
             </div>
@@ -1681,6 +1822,18 @@
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Inn
                                             </div>
                                         </div>
                                     </div>
@@ -1801,7 +1954,7 @@
         </div>
 
         @*Type10*@
-        <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <div class="mt-4 p-3 bg-body rounded shadow-sm">
             <div class="row mb-2">
                 <div class="col">
                     <div class="col-12 col-md-9 label">
@@ -1813,7 +1966,8 @@
                         @if (Model.Project!.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type10))
                         {
                             var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type10);
-                            MainController.GetParticipantName(participant);
+                            var name = MainController.GetParticipantName(participant);
+                            <div class="ms-3">@name</div>
                         }
                     </div>
                 </div>
@@ -1821,15 +1975,19 @@
                 <div class="col-2" style="text-align: right">
                     @if (Model.Project.Participants.Any(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type10))
                     {
+                        var participant = Model.Project!.Participants.Single(p => p.ParticipantType == Diplom.Core.Data.Enums.ParticipantType.Type10);
+                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Participants/View" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.ProjectId">
+                            <img src="~/images/look.svg" width="21" style="display: block; margin: 0 auto;" />
+                        </a>
                         <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType10" aria-expanded="false" aria-controls="collapseType10">
                             <img src="~/images/bootstrap/arrow-down.svg" />
                         </button>
                     }
                     else
                     {
-                        <button class="btn btn-outline-secondary btn-sm" type="button">
+                        <a class="btn btn-outline-secondary btn-sm" type="button" asp-page="/Participants/Add" asp-route-projectId="@Model.ProjectId" asp-route-type="10">
                             <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
-                        </button>
+                        </a>
                     }
                 </div>
             </div>
@@ -1875,6 +2033,18 @@
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 @person.PassportData
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="row p-2">
+                                            <div class="col-12 col-md-4 label">
+                                                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                @person.Inn
                                             </div>
                                         </div>
                                     </div>

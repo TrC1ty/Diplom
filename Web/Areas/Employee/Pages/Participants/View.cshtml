@@ -1,4 +1,491 @@
-﻿@page
+﻿@page "/projects/{ProjectId}/participants/{ParticipantId}"
+@using Diplom.Core.Data.Entities;
+@using Diplom.Core.Data.Enums;
 @model Diplom.Web.Areas.Employee.Pages.Participants.ViewModel
 @{
+}
+
+@section Navbar {
+    <a class="navbar-link" asp-page="/Projects/Participants" asp-route-projectId="@Model.ProjectId"><i class="bi bi-arrow-left"></i>К участникам</a>
+}
+
+@section PageName {
+    Просмотр участника
+}
+
+@if (Model.Type == 1)
+{
+    var participant = (NaturalPerson)Model.Participant!;
+
+    <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <h1>Просмотр физического лица</h1>
+    </div>
+    <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <div class="col-md-auto">
+            <div class="row">
+                <div class="col">
+                    <p style="color: rgba(0, 0, 0, 0.54);">Сохраненная информация</p>
+                </div>
+                <div class="col-2" style="text-align: right">
+                    <form method="post">
+                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Projects/Edit" asp-route-projectId="@Model.ProjectId"><img src="~/images/bootstrap/edit.svg" style="display: block; margin: 0 auto;" /></a>
+                        <button type="submit" class="btn btn-outline-secondary btn-sm" asp-page-handler="DeleteParticipant" onclick="return confirm('Вы уверены, что хотите удалить этого участника?');"><img src="~/images/bootstrap/trash.svg" style="display: block; margin: 0 auto;" /></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="information">
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Фамилия</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Surname
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Имя</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Name
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Отчество</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Patronymic
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Паспортные данные</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.PassportData
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Inn
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Р/С</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.PaymentAccount
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Должность</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Post
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Реестр специалистов</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.RegisterOfSpecialists
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Реквизиты распорядительного документа</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.DetailsAdminDoc
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Address
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+else if (Model.Type == 2)
+{
+    var participant = (LegalEntity)Model.Participant!;
+
+    <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <h1>Просмотр юридического лица</h1>
+    </div>
+    <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <div class="col-md-auto">
+            <div class="row">
+                <div class="col">
+                    <p style="color: rgba(0, 0, 0, 0.54);">Сохраненная информация</p>
+                </div>
+                <div class="col-2" style="text-align: right">
+                    <form method="post">
+                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Projects/Edit" asp-route-projectId="@Model.ProjectId"><img src="~/images/bootstrap/edit.svg" style="display: block; margin: 0 auto;" /></a>
+                        <button type="submit" class="btn btn-outline-secondary btn-sm" asp-page-handler="DeleteParticipant" onclick="return confirm('Вы уверены, что хотите удалить этого участника?');"><img src="~/images/bootstrap/trash.svg" style="display: block; margin: 0 auto;" /></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="information">
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Наименование</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.LegalName
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Фактический адрес</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Address
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Юридический адрес</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.PostAddress
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Inn
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Ogrn
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">БИК</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Bic
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОКВЭД</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Okved
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОКПО</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Okpo
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОКАТО</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Okato
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Р/С</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.PaymentAccount
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">К/С</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.CorAccount
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Генеральный директор</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.GeneralManager
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Сайт</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Site
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Почта</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Mail
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Телефон</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Phone
+                </div>
+            </div>
+
+            @if (participant.ParticipantType == ParticipantType.Type1 || participant.ParticipantType == ParticipantType.Type2 || participant.ParticipantType == ParticipantType.Type3 || participant.ParticipantType == ParticipantType.Type4)
+            {
+                <div class="row p-2">
+                    <div class="col-12 col-md-4 label">
+                        <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Наименование СРО</span>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        @participant.SroName
+                    </div>
+                </div>
+
+                <div class="row p-2">
+                    <div class="col-12 col-md-4 label">
+                        <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН СРО</span>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        @participant.SroInn
+                    </div>
+                </div>
+
+                <div class="row p-2">
+                    <div class="col-12 col-md-4 label">
+                        <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН СРО</span>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        @participant.SroOgrn
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    var participant = (IndividualEntrepreneur)Model.Participant!;
+
+    <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <h1>Просмотр индивидуального предпринимателя</h1>
+    </div>
+    <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <div class="col-md-auto">
+            <div class="row">
+                <div class="col">
+                    <p style="color: rgba(0, 0, 0, 0.54);">Сохраненная информация</p>
+                </div>
+                <div class="col-2" style="text-align: right">
+                    <form method="post">
+                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Participants/Edit" asp-route-projectId="@Model.ProjectId"><img src="~/images/bootstrap/edit.svg" style="display: block; margin: 0 auto;" /></a>
+                        <button type="submit" class="btn btn-outline-secondary btn-sm" asp-page-handler="DeleteParticipant" onclick="return confirm('Вы уверены, что хотите удалить этого участника?');"><img src="~/images/bootstrap/trash.svg" style="display: block; margin: 0 auto;" /></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="information">
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Наименование</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.LegalName
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Краткое наименование</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.ShortName
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Фактический адрес</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Address
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Юридический адрес</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.PostAddress
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Inn
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Ogrn
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">БИК</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Bic
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОКВЭД</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Okved
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Р/С</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.PaymentAccount
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">К/С</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.CorAccount
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Наименование банка</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.BankName
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Почта</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Mail
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 label">
+                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Телефон</span>
+                </div>
+                <div class="col-12 col-md-6">
+                    @participant.Phone
+                </div>
+            </div>
+
+            @if (participant.ParticipantType == ParticipantType.Type1 || participant.ParticipantType == ParticipantType.Type2 || participant.ParticipantType == ParticipantType.Type3 || participant.ParticipantType == ParticipantType.Type4)
+            {
+                <div class="row p-2">
+                    <div class="col-12 col-md-4 label">
+                        <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Наименование СРО</span>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        @participant.SroName
+                    </div>
+                </div>
+
+                <div class="row p-2">
+                    <div class="col-12 col-md-4 label">
+                        <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ИНН СРО</span>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        @participant.SroInn
+                    </div>
+                </div>
+
+                <div class="row p-2">
+                    <div class="col-12 col-md-4 label">
+                        <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">ОГРН СРО</span>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        @participant.SroOgrn
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 }

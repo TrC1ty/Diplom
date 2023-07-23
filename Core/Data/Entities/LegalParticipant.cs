@@ -45,11 +45,6 @@ namespace Diplom.Core.Data.Entities
         public string? CorAccount { get; set; }
 
         /// <summary>
-        /// Gets or sets payment account.
-        /// </summary>
-        public string? PaymentAccount { get; set; }
-
-        /// <summary>
         /// Gets or sets okved.
         /// </summary>
         public string? Okved { get; set; }

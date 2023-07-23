@@ -12,7 +12,6 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    display: flex;
     justify-content: space-around;
     align-items: center;
     border: 1px solid #AAAAAA;
@@ -41,11 +40,17 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    position: fixed;
     width: 270px;
     background-color: #f1f1f1;
-    position: fixed;
     height: 100%;
     overflow: auto;
+}
+
+header {
+    position: sticky;
+    width: 100%;
+    top: 0px;
 }
 
 .sidenav-link {

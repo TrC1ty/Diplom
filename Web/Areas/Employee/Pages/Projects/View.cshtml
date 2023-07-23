@@ -51,64 +51,62 @@
     </li>
 </ul>
 <div class="content">
-    <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        <div class="col-md-auto">
-            <div class="row">
-                <div class="col">
-                    <p style="color: rgba(0, 0, 0, 0.54);">Паспорт проекта</p>
-                </div>
-                <div class="col-2" style="text-align: right">
-                    <form method="post">
-                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Projects/Edit" asp-route-projectId="@Model.ProjectId"><img src="~/images/bootstrap/edit.svg" style="display: block; margin: 0 auto;" /></a>
-                        <button type="submit" class="btn btn-outline-secondary btn-sm" asp-page-handler="DeleteProject" onclick="return confirm('Вы уверены, что хотите удалить этот проект?');"><img src="~/images/bootstrap/trash.svg" style="display: block; margin: 0 auto;" /></button>
-                    </form>
-                </div>
+    <div class="col-md-auto">
+        <div class="row">
+            <div class="col">
+                <p style="color: rgba(0, 0, 0, 0.54);">Паспорт проекта</p>
+            </div>
+            <div class="col-2" style="text-align: right">
+                <form method="post">
+                    <a class="btn btn-outline-secondary btn-sm" asp-page="/Projects/Edit" asp-route-projectId="@Model.ProjectId"><img src="~/images/bootstrap/edit.svg" style="display: block; margin: 0 auto;" /></a>
+                    <button type="submit" class="btn btn-outline-secondary btn-sm" asp-page-handler="DeleteProject" onclick="return confirm('Вы уверены, что хотите удалить этот проект?');"><img src="~/images/bootstrap/trash.svg" style="display: block; margin: 0 auto;" /></button>
+                </form>
             </div>
         </div>
-        <div class="information">
-            <div class="row p-2">
-                <div class="col-12 col-md-4 label">
-                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Наименование</span>
-                </div>
-                <div class="col-12 col-md-6">
-                    @Model.Project!.Name
-                </div>
+    </div>
+    <div class="information">
+        <div class="row p-2">
+            <div class="col-12 col-md-4 label">
+                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Наименование</span>
             </div>
-
-            <div class="row p-2">
-                <div class="col-12 col-md-4 label">
-                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес строительства</span>
-                </div>
-                <div class="col-12 col-md-6">
-                    @Model.Project.BuldingAddress
-                </div>
+            <div class="col-12 col-md-6">
+                @Model.Project!.Name
             </div>
+        </div>
 
-            <div class="row p-2">
-                <div class="col-12 col-md-4 label">
-                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Документация</span>
-                </div>
-                <div class="col-12 col-md-6">
-                    @Model.Project.ProjectDocumentation
-                </div>
+        <div class="row p-2">
+            <div class="col-12 col-md-4 label">
+                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Адрес строительства</span>
             </div>
-
-            <div class="row p-2">
-                <div class="col-12 col-md-4 label">
-                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Код проекта</span>
-                </div>
-                <div class="col-12 col-md-6">
-                    @Model.Project.ProjectCode
-                </div>
+            <div class="col-12 col-md-6">
+                @Model.Project.BuldingAddress
             </div>
+        </div>
 
-            <div class="row p-2">
-                <div class="col-12 col-md-4 label">
-                    <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Дата создания</span>
-                </div>
-                <div class="col-12 col-md-6">
-                    @Model.Project.DateTimeCreated
-                </div>
+        <div class="row p-2">
+            <div class="col-12 col-md-4 label">
+                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Документация</span>
+            </div>
+            <div class="col-12 col-md-6">
+                @Model.Project.ProjectDocumentation
+            </div>
+        </div>
+
+        <div class="row p-2">
+            <div class="col-12 col-md-4 label">
+                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Код проекта</span>
+            </div>
+            <div class="col-12 col-md-6">
+                @Model.Project.ProjectCode
+            </div>
+        </div>
+
+        <div class="row p-2">
+            <div class="col-12 col-md-4 label">
+                <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">Дата создания</span>
+            </div>
+            <div class="col-12 col-md-6">
+                @Model.Project.DateTimeCreated
             </div>
         </div>
     </div>

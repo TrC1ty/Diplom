@@ -30,6 +30,11 @@ namespace Diplom.Core.Data.Entities
         public string? Address { get; set; }
 
         /// <summary>
+        /// Gets or sets payment account.
+        /// </summary>
+        public string? PaymentAccount { get; set; }
+
+        /// <summary>
         /// Gets or sets participant type.
         /// </summary>
         public ParticipantType ParticipantType { get; set; }
