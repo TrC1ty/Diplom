@@ -8,9 +8,13 @@
 </head>
 <body>
     <header>
-        <div class="navbar sticky-top bg-light">
-            @await RenderSectionAsync("Navbar", required: false)
-            <div style="margin-right: 45%;" class="page-name"> @await RenderSectionAsync("PageName", required: false)</div>
+        <div class="navbar sticky-top bg-light row">
+            <div class="col-2" style="text-align:left">
+                @await RenderSectionAsync("Navbar", required: false)
+            </div>
+            <div class="col">
+                <div style="margin-right: 10%;" class="page-name"> @await RenderSectionAsync("PageName", required: false)</div>
+            </div>
         </div>
     </header>
     <div class="container">
