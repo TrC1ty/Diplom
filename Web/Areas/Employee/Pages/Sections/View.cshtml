@@ -1,15 +1,6 @@
-﻿@page "/projects/{ProjectId}/works"
-@model Diplom.Web.Areas.Employee.Pages.Projects.Works
+﻿@page "/projects/{ProjectId}/reestr/{SectionId}"
+@model Diplom.Web.Areas.Employee.Pages.Sections.ViewModel
 @{
-    ViewData["Title"] = "Проект";
-}
-
-@section Navbar {
-    <a class="navbar-link" asp-page="/Index"><i class="bi bi-arrow-left"></i>К проектам</a>
-}
-
-@section PageName {
-    @Model.Project!.Name
 }
 
 <ul class="sidenav nav-tabs" id="myTab" role="tablist">
@@ -38,7 +29,13 @@
         </a>
     </li>
     <li>
-        <a asp-page="/Projects/Works" asp-route-projectId="@Model.ProjectId" class="sidenav-link sidenav-link-active" role="tab">
+        <a asp-page="/Sections/View" asp-route-projectId="@Model.ProjectId" asp-route-sectionId="@Model.SectionId" class="sidenav-link sidenav-link-active" role="tab">
+            <img src="~/images/bootstrap/list.svg" />
+            <i class="bi bi-file-earmark"></i>@Model.ProjectSection!.Name
+        </a>
+    </li>
+    <li>
+        <a asp-page="/Projects/Works" asp-route-projectId="@Model.ProjectId" class="sidenav-link" role="tab">
             <img src="~/images/bootstrap/work.svg" />
             <i class="bi bi-file-earmark"></i>Работы
         </a>
@@ -55,18 +52,25 @@
     <div class="col-md-auto">
         <div class="row">
             <div class="col">
-                <p style="color: rgba(0, 0, 0, 0.54);">Список работ</p>
+                <p style="color: rgba(0, 0, 0, 0.54);">@Model.ProjectSection!.Name</p>
             </div>
             <div class="col-2" style="text-align: right">
+                <form method="post">
+                    <a class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#sectionModal"><img src="~/images/bootstrap/edit.svg" style="display: block; margin: 0 auto;" /></a>
+                    <a class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#workModal">
+                        <img src="~/images/bootstrap/plus.svg" width="16" style="display: block; margin: 0 auto;" />
+                    </a>
+                    <button type="submit" class="btn btn-outline-secondary btn-sm" asp-page-handler="DeleteSection" onclick="return confirm('Вы уверены, что хотите удалить этот раздел?');"><img src="~/images/bootstrap/trash.svg" style="display: block; margin: 0 auto;" /></button>
+                </form>
             </div>
         </div>
     </div>
 
     <div class="information">
-
-        @foreach (var work in Model.ProjectWorks)
+        
+        @foreach (var work in Model.ProjectSection!.Works)
         {
-            <div class="mt-4 p-3 bg-body rounded shadow-sm">
+            <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
                 <div class="row mb-2">
                     <div class="col">
                         <div class="col-12 col-md-7 label">
@@ -146,5 +150,67 @@
             </div>
         }
 
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade modal-lg" id="sectionModal" tabindex="-1" aria-labelledby="sectionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sectionModalLabel">Редактирование раздела</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+                    <div class="row mb-3 align-items-center">
+                        <div class="col-12 col-md-3">
+                            <label asp-for="Name" class="col-form-label col-form-label-lg p-0"></label>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <input asp-for="Name" required class="form-control form-control-lg">
+                        </div>
+                    </div>
+                    <div>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade modal-lg" id="workModal" tabindex="-1" aria-labelledby="workModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="workModalLabel">Добавление работы</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" asp-page-handler="AddWork">
+                <div class="modal-body">
+                    <div class="row mb-3 align-items-center">
+                        <div class="col-12 col-md-3">
+                            <label asp-for="WorkName" class="col-form-label col-form-label-lg p-0"></label>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <input asp-for="WorkName" required class="form-control form-control-lg">
+                        </div>
+                    </div>
+                    <div>
+                        <span asp-validation-for="WorkName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

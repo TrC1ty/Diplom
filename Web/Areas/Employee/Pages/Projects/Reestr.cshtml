@@ -50,3 +50,72 @@
         </a>
     </li>
 </ul>
+<div class="content">
+    <div class="col-md-auto">
+        <div class="row">
+            <div class="col">
+                <p style="color: rgba(0, 0, 0, 0.54);">Реестры проекта</p>
+            </div>
+            <div class="col-2" style="text-align: right">
+                <a type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#sectionModal"><img src="~/images/bootstrap/plus.svg" style="display: block; margin: 0 auto;" /></a>
+            </div>
+        </div>
+    </div>
+    @foreach(var sec in Model.Sections!)
+    {
+        <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="col-12 col-md-7 label">
+                        <span class="col-form-label p-0" style="color: rgba(0, 0, 0, 0.54);">
+                            Наименование раздела
+                        </span>
+                    </div>
+                    <div class="col-12 col-md-7">
+                        <div class="ms-3">@sec.Name</div>
+                    </div>
+                </div>
+
+                <div class="col-2" style="text-align: right">
+                    <a class="btn btn-outline-secondary btn-sm" asp-page="/Sections/View" asp-route-projectId="@Model.ProjectId" asp-route-sectionId="@sec.Id">
+                        <img src="~/images/look.svg" width="21" style="display: block; margin: 0 auto;" />
+                    </a>
+                    <button class="btn btn-outline-secondary btn-sm" type="button">
+                        <img src="~/images/bootstrap/trash.svg" width="21" style="display: block; margin: 0 auto;" />
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Modal -->
+<div class="modal fade modal-lg" id="sectionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Добавление раздела</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+                    <div class="row mb-3 align-items-center">
+                        <div class="col-12 col-md-3">
+                            <label asp-for="Name" class="col-form-label col-form-label-lg p-0"></label>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <input asp-for="Name" class="form-control form-control-lg">
+                        </div>
+                    </div>
+                    <div>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

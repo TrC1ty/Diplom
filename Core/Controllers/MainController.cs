@@ -13,6 +13,7 @@ namespace Diplom.Core.Controllers
 
     using Diplom.Core.Data;
     using Diplom.Core.Data.Entities;
+    using Diplom.Core.Data.Enums;
     using Diplom.Core.Diagnostics;
 
     using Microsoft.AspNetCore.Identity;
@@ -87,6 +88,30 @@ namespace Diplom.Core.Controllers
                 var enterpreneur = (IndividualEntrepreneur)participant;
                 return enterpreneur.LegalName!;
             }
+        }
+
+        /// <summary>
+        /// Get participant status.
+        /// </summary>
+        /// <param name="participant">Participant.</param>
+        /// <returns>Participant type.</returns>
+        public static string GetParticipantStatus(Participant participant)
+        {
+            var name = participant.ParticipantType switch
+            {
+                ParticipantType.Type1 => "Застройщик",
+                ParticipantType.Type2 => "Лицо, осуществляющее строительство",
+                ParticipantType.Type3 => "Лицо, осуществляющее подготовку проектной документации",
+                ParticipantType.Type4 => "Лицо, выполнившее работы",
+                ParticipantType.Type5 => "Представитель застройщика",
+                ParticipantType.Type6 => "Представитель лица, осуществляющего строительство",
+                ParticipantType.Type7 => "Представитель лица по вопросам строительного контроля",
+                ParticipantType.Type8 => "Представитель лица, осуществляющего подготовку проектной документации",
+                ParticipantType.Type9 => "Представитель лица, выполнившего работы, подлежащие освидетельствованию",
+                _ => "Иные представители лиц",
+            };
+
+            return name;
         }
 
         /// <summary>

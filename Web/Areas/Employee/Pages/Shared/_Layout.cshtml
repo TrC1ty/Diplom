@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <div class="navbar sticky-top bg-light row">
+    <header style="z-index: 99">
+        <div class="navbar sticky-top bg-light row" style="z-index: 999">
             <div class="col-2" style="text-align:left">
                 @await RenderSectionAsync("Navbar", required: false)
             </div>

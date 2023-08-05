@@ -19,7 +19,7 @@ namespace Diplom.Web.Areas.Employee.Pages.Projects
         /// Gets or sets project name.
         /// </summary>
         [BindProperty]
-        [Display(Name = "Название")]
+        [Display(Name = "Наименование")]
         [Required(ErrorMessage = "Поле обязательно для заполнения.")]
         public string? Name { get; set; }
 
@@ -57,6 +57,11 @@ namespace Diplom.Web.Areas.Employee.Pages.Projects
         /// </summary>
         public IActionResult OnPost()
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.Page();
+            }
+
             var project = new Project(this.Name!, this.ProjectCode!);
             project.ProjectDocumentation = this.ProjectDocumentation;
             project.BuldingAddress = this.BuildingAddress;

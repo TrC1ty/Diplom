@@ -63,10 +63,5 @@ namespace Diplom.Core.Data.Entities
         /// Gets or sets sro inn.
         /// </summary>
         public string? SroOgrn { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether sro is existed.
-        /// </summary>
-        public bool DoesItExistSro { get; set; }
     }
 }

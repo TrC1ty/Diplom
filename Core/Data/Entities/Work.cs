@@ -41,7 +41,7 @@ namespace Diplom.Core.Data.Entities
         /// <summary>
         /// Gets or sets name of work documentation.
         /// </summary>
-        public string? NameWorktDoc { get; set; }
+        public string? NameWorkDoc { get; set; }
 
         /// <summary>
         /// Gets or sets number of work documentation.

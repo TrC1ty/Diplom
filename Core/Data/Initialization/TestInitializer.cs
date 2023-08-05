@@ -33,7 +33,7 @@ namespace Diplom.Core.Data.Initialization
 
             ////// This is how to read embedded resource file if needed.
             ////ResourceReader.ReadResourceBytes("Image.jpg");
-            ////ResourceReader.ReadResourceString("Text.txt");
+            ////цResourceReader.ReadResourceString("Text.txt");
 
             await dataContext.SaveChangesAsync();
         }

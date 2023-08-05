@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-2" style="text-align: right">
                     <form method="post">
-                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Projects/Edit" asp-route-projectId="@Model.ProjectId"><img src="~/images/bootstrap/edit.svg" style="display: block; margin: 0 auto;" /></a>
+                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Participants/Edit" asp-route-projectId="@Model.ProjectId" asp-route-participantId="@Model.ParticipantId"><img src="~/images/bootstrap/edit.svg" style="display: block; margin: 0 auto;" /></a>
                         <button type="submit" class="btn btn-outline-secondary btn-sm" asp-page-handler="DeleteParticipant" onclick="return confirm('Вы уверены, что хотите удалить этого участника?');"><img src="~/images/bootstrap/trash.svg" style="display: block; margin: 0 auto;" /></button>
                     </form>
                 </div>
@@ -144,7 +144,7 @@ else if (Model.Type == 2)
                 </div>
                 <div class="col-2" style="text-align: right">
                     <form method="post">
-                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Projects/Edit" asp-route-projectId="@Model.ProjectId"><img src="~/images/bootstrap/edit.svg" style="display: block; margin: 0 auto;" /></a>
+                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Participants/Edit" asp-route-projectId="@Model.ProjectId" asp-route-participantId="@Model.ParticipantId"><img src="~/images/bootstrap/edit.svg" style="display: block; margin: 0 auto;" /></a>
                         <button type="submit" class="btn btn-outline-secondary btn-sm" asp-page-handler="DeleteParticipant" onclick="return confirm('Вы уверены, что хотите удалить этого участника?');"><img src="~/images/bootstrap/trash.svg" style="display: block; margin: 0 auto;" /></button>
                     </form>
                 </div>
@@ -333,7 +333,7 @@ else
                 </div>
                 <div class="col-2" style="text-align: right">
                     <form method="post">
-                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Participants/Edit" asp-route-projectId="@Model.ProjectId"><img src="~/images/bootstrap/edit.svg" style="display: block; margin: 0 auto;" /></a>
+                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Participants/Edit" asp-route-projectId="@Model.ProjectId" asp-route-participantId="@Model.ParticipantId"><img src="~/images/bootstrap/edit.svg" style="display: block; margin: 0 auto;" /></a>
                         <button type="submit" class="btn btn-outline-secondary btn-sm" asp-page-handler="DeleteParticipant" onclick="return confirm('Вы уверены, что хотите удалить этого участника?');"><img src="~/images/bootstrap/trash.svg" style="display: block; margin: 0 auto;" /></button>
                     </form>
                 </div>

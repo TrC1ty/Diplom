@@ -1,4 +1,81 @@
 ﻿@page "/projects/{ProjectId}/Participant/Edit/{ParticipantId}"
+@using Diplom.Core.Controllers
 @model Diplom.Web.Areas.Employee.Pages.Participants.EditModel
 @{
+}
+
+@section Navbar {
+    <a class="navbar-link" asp-page="/Participants/View" asp-route-projectId="@Model.ProjectId" asp-route-participantId="@Model.ParticipantId"><i class="bi bi-arrow-left"></i>К проекту</a>
+}
+
+@section PageName {
+    Редактирование участника
+}
+
+@if (Model.Type == 1)
+{
+    var status = MainController.GetParticipantStatus(@Model.Participant!);
+    <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <h1>Редактирование @status</h1>
+    </div>
+
+    <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <form method="post" class="p-3">
+            <div class="form-group">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-12 col-md-3">
+                        <label class="col-form-label p-0" asp-for="Surname"></label>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input asp-for="Surname" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <span asp-validation-for="Surname" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-12 col-md-3">
+                        <label class="col-form-label p-0" asp-for="Name"></label>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input asp-for="Name" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-12 col-md-3">
+                        <label class="col-form-label p-0" asp-for="Patronymic"></label>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input asp-for="Patronymic" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <span asp-validation-for="Patronymic" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+}
+else if (Model.Type == 2)
+{
+    var status = MainController.GetParticipantStatus(@Model.Participant!);
+    <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <h1>Редактирование @status</h1>
+    </div>
+}
+else
+{
+    var status = MainController.GetParticipantStatus(@Model.Participant!);
+    <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
+        <h1>Редактирование @status</h1>
+    </div>
 }
