@@ -1,6 +1,14 @@
-﻿@page "/projects/{ProjectId}/reestr/{SectionId}"
+﻿@page "/reestr/{SectionId}"
 @model Diplom.Web.Areas.Employee.Pages.Sections.ViewModel
 @{
+}
+
+@section Navbar {
+    <a class="navbar-link" asp-page="/Index"><i class="bi bi-arrow-left"></i>К проектам</a>
+}
+
+@section PageName {
+    @Model.ProjectSection!.Name
 }
 
 <ul class="sidenav nav-tabs" id="myTab" role="tablist">
@@ -29,7 +37,7 @@
         </a>
     </li>
     <li>
-        <a asp-page="/Sections/View" asp-route-projectId="@Model.ProjectId" asp-route-sectionId="@Model.SectionId" class="sidenav-link sidenav-link-active" role="tab">
+        <a asp-page="/Sections/View" asp-route-sectionId="@Model.SectionId" class="sidenav-link sidenav-link-active" role="tab">
             <img src="~/images/bootstrap/list.svg" />
             <i class="bi bi-file-earmark"></i>@Model.ProjectSection!.Name
         </a>
@@ -84,7 +92,7 @@
                     </div>
 
                     <div class="col-2" style="text-align: right">
-                        <a class="btn btn-outline-secondary btn-sm" asp-page="">
+                        <a class="btn btn-outline-secondary btn-sm" asp-page="/Works/View" asp-route-workId="@work.Id">
                             <img src="~/images/look.svg" width="21" style="display: block; margin: 0 auto;" />
                         </a>
                         <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseType1" aria-expanded="false" aria-controls="collapseType1">

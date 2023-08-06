@@ -27,7 +27,6 @@ namespace Diplom.Web.Areas.Employee.Pages.Sections
         /// <summary>
         /// Gets or sets project id.
         /// </summary>
-        [BindProperty(SupportsGet = true)]
         public int? ProjectId { get; set; }
 
         /// <summary>
@@ -116,6 +115,8 @@ namespace Diplom.Web.Areas.Employee.Pages.Sections
             this.ProjectSection = this.DataContext.ProjectSections
                 .Include(s => s.Works)
                 .Single(s => s.Id == this.SectionId);
+
+            this.ProjectId = this.ProjectSection.ProjectId;
         }
     }
 }

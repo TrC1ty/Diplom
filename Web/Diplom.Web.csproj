@@ -72,7 +72,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Areas\Employee\Pages\Works\" />
 	  <Folder Include="wwwroot\doc\" />
 	</ItemGroup>
 

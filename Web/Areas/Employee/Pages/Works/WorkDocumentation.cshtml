@@ -1,0 +1,39 @@
+﻿@page "/work/{WorkId}/documentation"
+@model Diplom.Web.Areas.Employee.Pages.Works.WorkDocumentationModel
+@{
+}
+
+@section Navbar {
+    <a class="navbar-link" asp-page="/Sections/View" asp-route-sectionId="@Model.SectionId"><i class="bi bi-arrow-left"></i>К разделу</a>
+}
+
+@section PageName {
+    @Model.Work!.Name
+}
+
+<ul class="sidenav nav-tabs" id="myTab" role="tablist">
+    <li>
+        <a asp-page="/Works/View" asp-route-workId="@Model.WorkId" class="sidenav-link" role="tab">
+            <img src="~/images/bootstrap/info.svg" />
+            <i class="bi bi-house"></i>Паспорт работы
+        </a>
+    </li>
+    <li>
+        <a asp-page="/Works/Materials" asp-route-workId="@Model.WorkId" class="sidenav-link" role="tab">
+            <img src="~/images/bootstrap/material.svg" />
+            <i class="bi bi-file-earmark"></i>Материалы
+        </a>
+    </li>
+    <li>
+        <a asp-page="/Works/ExecutiveSchemes" asp-route-workId="@Model.WorkId" class="sidenav-link" role="tab">
+            <img src="~/images/bootstrap/doc.svg" />
+            <i class="bi bi-file-earmark"></i>Исполнительные схемы
+        </a>
+    </li>
+    <li>
+        <a asp-page="/Works/WorkDocumentation" asp-route-workId="@Model.WorkId" class="sidenav-link sidenav-link-active" role="tab">
+            <img src="~/images/bootstrap/snip.svg" />
+            <i class="bi bi-file-earmark"></i>СНИПы
+        </a>
+    </li>
+</ul>
