@@ -62,6 +62,98 @@
                     </div>
                 </div>
             </div>
+
+            <div class="form-group">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-12 col-md-3">
+                        <label class="col-form-label p-0" asp-for="PassportData"></label>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input asp-for="PassportData" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <span asp-validation-for="PassportData" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-12 col-md-3">
+                        <label class="col-form-label p-0" asp-for="Post"></label>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input asp-for="Post" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <span asp-validation-for="Post" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-12 col-md-3">
+                        <label class="col-form-label p-0" asp-for="RegisterOfSpecialists"></label>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input asp-for="RegisterOfSpecialists" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <span asp-validation-for="RegisterOfSpecialists" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-12 col-md-3">
+                        <label class="col-form-label p-0" asp-for="DetailsAdminDoc"></label>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input asp-for="DetailsAdminDoc" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <span asp-validation-for="DetailsAdminDoc" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-12 col-md-3">
+                        <label class="col-form-label p-0" asp-for="Inn"></label>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input asp-for="Inn" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <span asp-validation-for="Inn" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-12 col-md-3">
+                        <label class="col-form-label p-0" asp-for="Address"></label>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input asp-for="Address" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+                <div class="form-group">
+                    <div class="row mb-4 align-items-center">
+                        <div class="col-12 col-md-3">
+                            <label class="col-form-label p-0" asp-for="PaymentAccount"></label>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <input asp-for="PaymentAccount" class="form-control" />
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <span asp-validation-for="PaymentAccount" class="text-danger"></span>
+                        </div>
+                    </div>
+            </div>
         </form>
     </div>
 }
@@ -71,11 +163,479 @@ else if (Model.Type == 2)
     <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
         <h1>Редактирование @status</h1>
     </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="Inn"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Inn" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Inn" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="Address"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Address" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="PaymentAccount"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="PaymentAccount" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="PaymentAccount" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="LegalName"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="LegalName" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="LegalName" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="PostAddress"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="PostAddress" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="PostAddress" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="Mail"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Mail" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Mail" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="Phone"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Phone" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="Ogrn"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Ogrn" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Ogrn" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="Bic"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Bic" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Bic" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="CorAccount"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="CorAccount" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="CorAccount" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="Okved"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Okved" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Okved" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="SroName"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="SroName" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="SroName" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="SroInn"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="SroInn" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="SroInn" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="SroOgrn"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="SroOgrn" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="SroOgrn" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="Kpp"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Kpp" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Kpp" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="Okpo"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Okpo" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Okpo" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="Okato"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Okato" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Okato" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="GeneralManager"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="GeneralManager" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="GeneralManager" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="Site"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Site" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Site" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
 }
 else
 {
     var status = MainController.GetParticipantStatus(@Model.Participant!);
     <div class="mt-4 my-3 p-3 bg-body rounded shadow-sm">
         <h1>Редактирование @status</h1>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="Inn"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Inn" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Inn" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="Address"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Address" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="PaymentAccount"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="PaymentAccount" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="PaymentAccount" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="LegalName"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="LegalName" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="LegalName" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="PostAddress"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="PostAddress" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="PostAddress" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="Mail"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Mail" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Mail" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="Phone"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Phone" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="Ogrn"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Ogrn" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Ogrn" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="Bic"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Bic" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Bic" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="CorAccount"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="CorAccount" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="CorAccount" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="Okved"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="Okved" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="Okved" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="SroName"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="SroName" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="SroName" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="SroInn"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="SroInn" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="SroInn" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="SroOgrn"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="SroOgrn" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="SroOgrn" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="ShortName"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="ShortName" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="ShortName" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="BankName"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="BankName" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="BankName" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row mb-4 align-items-center">
+            <div class="col-12 col-md-3">
+                <label class="col-form-label p-0" asp-for="TaxationSystem"></label>
+            </div>
+            <div class="col-12 col-md-6">
+                <input asp-for="TaxationSystem" class="form-control" />
+            </div>
+            <div class="col-12 col-md-3">
+                <span asp-validation-for="TaxationSystem" class="text-danger"></span>
+            </div>
+        </div>
     </div>
 }

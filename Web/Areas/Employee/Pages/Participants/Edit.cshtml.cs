@@ -283,16 +283,62 @@ namespace Diplom.Web.Areas.Employee.Pages.Participants
             {
                 this.Participant = ie;
                 this.Type = 3;
+                this.Inn = ie.Inn;
+                this.Address = ie.Address;
+                this.PaymentAccount = ie.PaymentAccount;
+                this.LegalName = ie.LegalName;
+                this.PostAddress = ie.PostAddress;
+                this.Mail = ie.Mail;
+                this.Phone = ie.Phone;
+                this.Ogrn = ie.Ogrn;
+                this.Bic = ie.Bic;
+                this.CorAccount = ie.CorAccount;
+                this.Okved = ie.Okved;
+                this.SroName = ie.SroName;
+                this.SroInn = ie.SroInn;
+                this.SroOgrn = ie.SroOgrn;
+                this.ShortName = ie.ShortName;
+                this.BankName = ie.BankName;
+                this.TaxationSystem = ie.TaxationSystem;
             }
             else if (le != null)
             {
                 this.Participant = le;
                 this.Type = 2;
+                this.Inn = le.Inn;
+                this.Address = le.Address;
+                this.PaymentAccount = le.PaymentAccount;
+                this.LegalName = le.LegalName;
+                this.PostAddress = le.PostAddress;
+                this.Mail = le.Mail;
+                this.Phone = le.Phone;
+                this.Ogrn = le.Ogrn;
+                this.Bic = le.Bic;
+                this.CorAccount = le.CorAccount;
+                this.Okved = le.Okved;
+                this.SroName = le.SroName;
+                this.SroInn = le.SroInn;
+                this.SroOgrn = le.SroOgrn;
+                this.Kpp = le.Kpp;
+                this.Okpo = le.Okpo;
+                this.Okato = le.Okato;
+                this.GeneralManager = le.GeneralManager;
+                this.Site = le.Site;
             }
             else
             {
                 this.Participant = np;
                 this.Type = 1;
+                this.Inn = np.Inn;
+                this.Address = np.Address;
+                this.PaymentAccount = np.PaymentAccount;
+                this.Surname = np.Surname;
+                this.Name = np.Name;
+                this.Patronymic = np.Patronymic;
+                this.PassportData = np.PassportData;
+                this.Post = np.Post;
+                this.RegisterOfSpecialists = np.RegisterOfSpecialists;
+                this.DetailsAdminDoc = np.DetailsAdminDoc;
             }
         }
     }
