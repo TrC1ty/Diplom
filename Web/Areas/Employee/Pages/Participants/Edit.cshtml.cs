@@ -265,6 +265,109 @@ namespace Diplom.Web.Areas.Employee.Pages.Participants
             this.InitFields();
         }
 
+        /// <summary>
+        /// The post.
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult OnPost()
+        {
+            this.InitFieldsWithout();
+
+            if (this.Type == 1)
+            {
+                var np = (NaturalPerson)this.Participant!;
+                np.Inn = this.Inn;
+                np.Address = this.Address;
+                np.PaymentAccount = this.PaymentAccount;
+                np.Surname = this.Surname;
+                np.Name = this.Name;
+                np.Patronymic = this.Patronymic;
+                np.PassportData = this.PassportData;
+                np.Post = this.Post;
+                np.RegisterOfSpecialists = this.RegisterOfSpecialists;
+                np.DetailsAdminDoc = this.DetailsAdminDoc;
+            }
+            else if (this.Type == 2)
+            {
+                var le = (LegalEntity)this.Participant!;
+                le.Inn = this.Inn;
+                le.Address = this.Address;
+                le.PaymentAccount = this.PaymentAccount;
+                le.LegalName = this.LegalName;
+                le.PostAddress = this.PostAddress;
+                le.Mail = this.Mail;
+                le.Phone = this.Phone;
+                le.Ogrn = this.Ogrn;
+                le.Bic = this.Bic;
+                le.CorAccount = this.CorAccount;
+                le.Okved = this.Okved;
+                le.SroName = this.SroName;
+                le.SroInn = this.SroInn;
+                le.SroOgrn = this.SroOgrn;
+                le.Kpp = this.Kpp;
+                le.Okpo = this.Okpo;
+                le.Okato = this.Okato;
+                le.GeneralManager = this.GeneralManager;
+                le.Site = this.Site;
+            }
+            else
+            {
+                var ie = (IndividualEntrepreneur)this.Participant!;
+                ie.Inn = this.Inn;
+                ie.Address = this.Address;
+                ie.PaymentAccount = this.PaymentAccount;
+                ie.LegalName = this.LegalName;
+                ie.PostAddress = this.PostAddress;
+                ie.Mail = this.Mail;
+                ie.Phone = this.Phone;
+                ie.Ogrn = this.Ogrn;
+                ie.Bic = this.Bic;
+                ie.CorAccount = this.CorAccount;
+                ie.Okved = this.Okved;
+                ie.SroName = this.SroName;
+                ie.SroInn = this.SroInn;
+                ie.SroOgrn = this.SroOgrn;
+                ie.ShortName = this.ShortName;
+                ie.BankName = this.BankName;
+                ie.TaxationSystem = this.TaxationSystem;
+            }
+
+            this.DataContext.SaveChanges();
+
+            return this.RedirectToPage("/Participants/View", new { this.ParticipantId, this.ProjectId });
+        }
+
+        private void InitFieldsWithout()
+        {
+            var le = this.DataContext.LegalEntities
+                        .Include(le => le.Project)
+                        .SingleOrDefault(le => le.Id == this.ParticipantId);
+
+            var np = this.DataContext.NaturalPersons
+                        .Include(le => le.Project)
+                        .SingleOrDefault(le => le.Id == this.ParticipantId);
+
+            var ie = this.DataContext.IndividualEntrepreneurs
+                        .Include(le => le.Project)
+                        .SingleOrDefault(le => le.Id == this.ParticipantId);
+
+            if (ie != null)
+            {
+                this.Participant = ie;
+                this.Type = 3;
+            }
+            else if (le != null)
+            {
+                this.Participant = le;
+                this.Type = 2;
+            }
+            else
+            {
+                this.Participant = np;
+                this.Type = 1;
+            }
+        }
+
         private void InitFields()
         {
             var le = this.DataContext.LegalEntities
