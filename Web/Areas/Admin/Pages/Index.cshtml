@@ -5,5 +5,25 @@
 }
 
 <h1 class="display-4">Административная панель</h1>
-<a asp-page="Employees/Index" class="btn btn-outline-primary btn-sm mb-2">Пользователи</a>
-<br />
+<table class="table">
+    <tr>
+        <th>Дата добавления</th>
+        <th>User name</th>
+        <th>Удален</th>
+    </tr>
+
+    @foreach (var employee in Model.Employees)
+    {
+        <tr>
+            <td>@employee.DateTimeCreated.ToLocalTime().ToShortDateString()</td>
+            <td>@employee.UserName</td>
+            <td>@(employee.DateTimeDeleted.HasValue ? "Да" : "Нет")</td>
+            <form id="login-form" method="post" asp-page-handler="Login" asp-route-customerId="@employee.Id">
+            <td>
+                <a href="javascript:{}" onclick="document.getElementById('login-form').submit();" class="btn btn-outline-primary btn-sm mb-2">Войти</a>
+            </td>
+            </form>
+        </tr>
+    }
+
+</table>

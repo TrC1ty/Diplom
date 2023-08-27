@@ -1,10 +1,147 @@
 ﻿@page
 @model LoginModel
 @{
-    ViewData["Title"] = "Log in";
+    Layout = null;
 }
 
-<h1>@ViewData["Title"]</h1>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+		<meta name="apple-mobile-web-app-title" content="CodePen">
+		<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+		<link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+		<title>CodePen - Nice dark sign in form</title>
+		<link rel="canonical" href="https://codepen.io/codyshop/pen/rzddaG">
+		<style>
+			@@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+			@@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css');
+
+			*{	
+				font-family: 'Open Sans', 'sans-serif', 'FontAwesome';
+			}
+			body{
+				background: rgb(52, 56, 61);
+				padding: 80px;
+			}
+			h1{
+				color: rgb(255, 255, 255);
+				margin: 20px auto 0;
+				width: 200px;
+				text-align: center;
+			}
+			#wrapper{
+				position: absolute;
+				width: 320px;
+				left: 50%;
+				margin-left: -160px;
+				top: 50%;
+				margin-top: -75px;
+			}
+
+			/* === Sign in Form === */
+			#signin {
+				height: 90px;
+				width: 300px;
+				border-radius: 8px;
+				position: relative;
+			}
+			#signin::before {
+				display: block;
+				position: relative;
+				height: 2px;
+				background: rgb(52, 56, 61);
+				content: '';
+				top: 44px;
+				margin-left: 20px;
+				z-index: 1;
+			}
+			#signin input:first-of-type{
+				border-top-right-radius: 8px;
+				border-top-left-radius: 8px;
+			}
+			#signin input:last-of-type{
+				border-bottom-right-radius: 8px;
+				border-bottom-left-radius: 8px;
+			}
+			#signin  input[type="text"], #signin  input[type="password"], #signin button[type="submit"]{
+				background: rgb(28, 30, 33);
+				box-shadow: inset -100px -100px 0 rgb(28, 30, 33); /*Prevent yellow autofill color*/
+				color: rgb(52, 56, 61);
+			}
+			#signin  input[type="text"], #signin  input[type="password"]{
+				position: relative;
+				display: block;
+				width: 280px;
+				height: 45px;
+				border: 0;
+				outline: 0;
+				top: -2px;
+				padding: 0 0 0 20px;
+				font-weight: 700;
+			}
+			#signin  input[type="text"]:focus, #signin  input[type="password"]:focus{
+				color: rgb(255, 255, 255);
+			}
+			#signin button[type="submit"]{
+				display: block;
+				position: absolute;
+				width: 52px;
+				height: 52px;
+				color: rgb(52, 56, 61);
+				border-radius: 50px;
+				outline: 0;
+				z-index: 2;
+				top: 19px;
+				right: -24px;
+				border: 6px solid rgb(52, 56, 61);
+				font-size: 25px;
+				text-indent: 0px;
+				padding-left: 9px;
+				padding-bottom: 3px;
+				text-align: center;
+			}
+			#signin button[type="submit"]:hover{
+				color: rgb(0, 126, 165);
+				text-shadow: 0 0 10px rgb(0, 126, 165);
+				cursor: pointer;
+			}
+			#signin p {
+				color: rgb(79, 85, 97);
+				padding: 0 20px;
+				font-weight: 700;
+				font-size: 12px;
+				margin: 5px 0 0 0;
+			}
+			#signin p > a{
+				color: rgb(111, 119, 135);
+				text-decoration: none;
+			}
+			#signin p > a:hover{
+				border-bottom: 1px solid;
+			}
+		</style>
+
+		<script>
+			window.console = window.console || function(t) {};
+		</script>
+	</head>
+
+	<body translate="no">
+		<h1>Sign In Form</h1>
+		<div id="wrapper">
+			<form id="signin" method="post" autocomplete="off">
+				<input asp-for="Input.Email" type="text" placeholder="username">
+				<input asp-for="Input.Password" type="password" placeholder="password">
+				<button type="submit"></button>
+				<span asp-validation-for="Input.Email" class="text-danger"></span>
+				<span asp-validation-for="Input.Password" class="text-danger"></span>
+			</form>
+		</div>
+	</body>
+</html>
+
+@* <h1>@ViewData["Title"]</h1>
 <div class="row">
     <div class="col-md-4">
         <section>
@@ -40,4 +177,4 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-}
+} *@

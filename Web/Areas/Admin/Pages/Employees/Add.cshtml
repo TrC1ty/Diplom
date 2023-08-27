@@ -5,7 +5,7 @@
     ViewData["Title"] = "Admin page";
 }
 
-<h2>Административная панель - Добавление пользователя</h2>
+<h2>Административная панель - Добавление организации</h2>
 <br />
 <a asp-page="Index" class="btn btn-outline-primary btn-sm mb-2">Назад</a>
 <br />
@@ -13,11 +13,17 @@
 @if (Model.EmployeeCreated)
 {
     <div class="text-success">
-        Пользователь успешно создан.
+        Организация успешно создана.
     </div>
 }
 
 <form method="post">
+    <div class="mb-3">
+        <label asp-for="@Model.Name" class="form-label">Наименование организации:</label>
+        <input class="form-control" asp-for="@Model.Name">
+        <span asp-validation-for="Name"></span>
+    </div>
+
     <div class="mb-3">
         <label asp-for="@Model.Email" class="form-label">Email:</label>
         <input type="email" class="form-control" asp-for="@Model.Email">

@@ -16,6 +16,11 @@ namespace Diplom.Core.Data.Entities
     public class ApplicationUser : IdentityUser<int>
     {
         /// <summary>
+        /// Gets or sets user name.
+        /// </summary>
+        public string? Name { get; set; }
+
+        /// <summary>
         /// Gets or sets date and time when this record was created.
         /// </summary>
         public DateTime DateTimeCreated { get; set; }
@@ -25,6 +30,11 @@ namespace Diplom.Core.Data.Entities
         /// This value is null if record has not been deleted.
         /// </summary>
         public DateTime? DateTimeDeleted { get; set; }
+
+        /// <summary>
+        /// Gets or sets user rights.
+        /// </summary>
+        public UserRights? UserRghts { get; set; }
 
         /// <summary>
         /// Gets collection of ApplicationUserRole objects.

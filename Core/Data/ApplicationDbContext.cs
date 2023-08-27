@@ -36,6 +36,11 @@ namespace Diplom.Core.Data
         public DbSet<ApplicationUserRole> ApplicationUserRoles => this.Set<ApplicationUserRole>();
 
         /// <summary>
+        /// Gets EF collection of users rights objects.
+        /// </summary>
+        public DbSet<UserRights> UsersRights => this.Set<UserRights>();
+
+        /// <summary>
         /// Gets EF collection of Project objects.
         /// </summary>
         public DbSet<Project> Projects => this.Set<Project>();

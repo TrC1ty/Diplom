@@ -27,6 +27,11 @@ namespace Diplom.Core.Data.Entities
         /// <summary>
         /// Users role name. This is role for normal employee user.
         /// </summary>
+        public static readonly string CompanyUser = nameof(CompanyUser);
+
+        /// <summary>
+        /// Users role name. This is role for normal employee user.
+        /// </summary>
         public static readonly string EmployeeUser = nameof(EmployeeUser);
 
         /// <summary>
@@ -51,6 +56,7 @@ namespace Diplom.Core.Data.Entities
                 nameof(System) => "Система",
                 nameof(SystemAdmin) => "Администратор",
                 nameof(EmployeeUser) => "Сотрудник",
+                nameof(CompanyUser) => "Организация",
                 _ => throw new NotImplementedException("Unknown role."),
             };
         }

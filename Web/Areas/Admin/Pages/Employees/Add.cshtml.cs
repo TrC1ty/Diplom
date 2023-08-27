@@ -21,16 +21,22 @@ namespace Diplom.Web.Areas.Admin.Pages.Employees
     /// </summary>
     public class Add : AdminBasePageModel
     {
-        private readonly EmployeeService employeeService;
+        private readonly UserService userService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Add"/> class.
         /// </summary>
-        /// <param name="employeeService">Employee service.</param>
-        public Add(EmployeeService employeeService)
+        /// <param name="userService">User service.</param>
+        public Add(UserService userService)
         {
-            this.employeeService = employeeService;
+            this.userService = userService;
         }
+
+        /// <summary>
+        /// Gets or sets name.
+        /// </summary>
+        [BindProperty]
+        public string? Name { get; set; }
 
         /// <summary>
         /// Gets or sets email.
@@ -78,7 +84,7 @@ namespace Diplom.Web.Areas.Admin.Pages.Employees
                 return this.Page();
             }
 
-            var employee = await this.employeeService.CreateEmployeeAsync(this.Email!, this.Email!,  null, this.Password!);
+            var employee = await this.userService.CreateCompanyAsync(this.Email!, this.Email!,  null, this.Password!, this.Name!);
             employee.EmailConfirmed = true;
             this.DataContext.SaveChanges();
 

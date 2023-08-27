@@ -90,7 +90,7 @@ namespace Diplom.Web.Areas.Identity.Pages.Account
         /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= this.Url.Content("~/");
+            returnUrl ??= this.Url.Content("/Employee/Index");
 
             this.ExternalLogins = (await this.signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
@@ -101,6 +101,11 @@ namespace Diplom.Web.Areas.Identity.Pages.Account
                 var result = await this.signInManager.PasswordSignInAsync(this.Input.Email, this.Input.Password, this.Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    if (string.Equals(this.Input.Email, "admin@test.com", StringComparison.OrdinalIgnoreCase))
+                    {
+                        returnUrl = this.Url.Content("/Admin/Index");
+                    }
+
                     this.logger.LogInformation("User logged in.");
                     return this.LocalRedirect(returnUrl);
                 }

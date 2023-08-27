@@ -44,7 +44,7 @@ namespace Diplom.Web.Areas.Admin.Pages.Employees
             this.Employees = this.DataContext.Users
                 .Include(u => u.UserRoles)
                     .ThenInclude(ur => ur.Role)
-                .Where(u => u.UserRoles.Any(ur => ur.Role.Name == ApplicationRole.EmployeeUser))
+                .Where(u => u.UserRoles.Any(ur => ur.Role.Name == ApplicationRole.CompanyUser))
                 .ToList();
         }
 
